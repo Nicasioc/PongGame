@@ -1,0 +1,84 @@
+body {
+                font-family: "Lato";
+                font-size: 13px;
+            }
+            h1 {
+                text-align: center;
+            }
+            .control1,
+            .control2 {
+                font-size: 18px;
+                line-height: 1.5em;
+            }
+            #player1 {
+                float: right;
+                font-weight: 700;
+            }
+            #player2 {
+                float: left;
+                font-weight: 700;
+            }
+            .control1,.score1 {
+                color: #ff0000;
+            }
+            .control2,.score2 {
+                color: #0000ff;
+            }
+            #gameContainer {
+                width: 502px;
+                height: 318px;
+                margin: auto;
+                position: relative;
+            }
+            #intro {
+                position: absolute;
+                top: -1px;
+				bottom: -1px;
+				right: -1px;
+				left: 1px;
+                background: #fff;
+                z-index: 2;
+            }
+            #pongWrapper {
+                position: relative;
+                z-index: 1;
+            }
+            #pong {
+                border:1px solid #ddd;
+                margin:auto; 
+                display: block;
+            }
+            #marker {
+                margin:auto;
+                width: 100%;
+            }
+            .number {
+                display: inline-block;
+            }
+            .startButton {
+                display: block;
+                margin: auto;
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 2em;
+                text-align: center;
+                background: #dddddd;
+                padding: 10px 0;
+                margin: 20px 0 0;
+                text-decoration: none;
+            }
+            .startButton:hover {
+                background: #333;
+                color: #fff;
+            }
+            #endGame {
+                display: none;
+                position: absolute;
+                top: -1px;
+				bottom: -1px;
+				right: -1px;
+				left: 1px;
+                background: #fff;
+                z-index: 2;
+                text-align: center;
+            }
