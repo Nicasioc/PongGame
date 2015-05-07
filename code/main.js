@@ -14,7 +14,8 @@ function init() {
 
     player1 = new Player( player1Name||"Player 1" ,PLAYER1_ID, PLAYER1_IMAGE);
     player2 = new Player( player2Name||"Player 2" ,PLAYER2_ID, PLAYER2_IMAGE, "right");
-    ball = new Ball();
+    ball = new Ball(3);
+    phantomBall = new Ball(10);
 
     //sound
     createjs.Sound.registerSound("snd/pipe.mp3", "ballImpact", 3);
@@ -35,6 +36,7 @@ function init() {
     stage.addChild(player1.pad);
     stage.addChild(player2.pad);
     stage.addChild(ball.actor);
+    stage.addChild(phantomBall.actor);
 
     /*
         EVENT LISTENER
@@ -81,6 +83,7 @@ function loop(event) {
         }
 
         ball.update();
+        phantomBall.update();
         stage.update();
     }
 }

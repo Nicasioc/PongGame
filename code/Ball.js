@@ -1,5 +1,7 @@
-function Ball () {
+function Ball (BALL_SPEED) {
 
+	var BALL_SPEED_X = BALL_SPEED;
+	var BALL_SPEED_Y = BALL_SPEED;
 	this.actor = new createjs.Bitmap("img/ball.png");
 
 	this.initialize = function() {
