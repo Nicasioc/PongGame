@@ -12,8 +12,10 @@ function init() {
 
     createjs.Ticker.setFPS(60)
 
-    player1 = new Player( player1Name||"Player 1" ,PLAYER1_ID, PLAYER1_IMAGE);
-    player2 = new Player( player2Name||"Player 2" ,PLAYER2_ID, PLAYER2_IMAGE, "right");
+    players = [];
+
+    players.push( new Player( player1Name||"Player 1" ,PLAYER1_ID, PLAYER1_IMAGE) );
+    players.push( new Player( player2Name||"Player 2" ,PLAYER2_ID, PLAYER2_IMAGE, "right") );
     ball = new Ball(3, 10);
     phantomBall = new Ball(10);
 
@@ -27,14 +29,14 @@ function init() {
      */
 
     //Players
-    player1.initialize();
-    player2.initialize();
+    players[0].initialize();
+    players[1].initialize();
     //ball
     ball.initialize();
 
     /* Add actors */
-    stage.addChild(player1.pad);
-    stage.addChild(player2.pad);
+    stage.addChild(players[0].pad);
+    stage.addChild(players[1].pad);
     stage.addChild(ball.actor);
     stage.addChild(phantomBall.actor);
 
@@ -66,20 +68,20 @@ function loop(event) {
     if(!event.paused) {
 
         if( keys[KEYCODE_P1_UP] ) { 
-            player1.update("up");
+            players[0].update("up");
         }
         if( keys[KEYCODE_P1_DOWN] ) { 
-            player1.update("down"); 
+            players[0].update("down"); 
         }
         if (!playBot) { 
             if( keys[KEYCODE_P2_UP] ) { 
-                player2.update("up");
+                players[1].update("up");
             }
             if( keys[KEYCODE_P2_DOWN] ) { 
-                player2.update("down"); 
+                players[1].update("down"); 
             } 
         } else {
-            player2.move();
+            players[1].move();
         }
 
         ball.update();
@@ -98,79 +100,45 @@ function loop(event) {
             };
             
             ball.ballSpeedY *= -1;
-
-/*            
-            if (BALL_SPEED_Y < 0) {
-                BALL_SPEED_Y-=BALL_SPEED_MODIFIER
-            } else {
-                BALL_SPEED_Y+=BALL_SPEED_MODIFIER;
-            }
-            if (BALL_SPEED_X < 0) {
-                BALL_SPEED_X-=BALL_SPEED_MODIFIER;
-            } else {
-                BALL_SPEED_X+=BALL_SPEED_MODIFIER;
-            }
-*/
         }
-
         //ball goals collisions
         if ( ball.actor.x < 0 || ball.actor.x + BALL_SIZE > stage.getBounds().width ) {
+            
             BALL_SPEED_X *= -1;
+            
             if(ball.actor.x < 0) {
-                updateScore( player2 );
+                updateScore( players[1] );
             } else {
-                updateScore( player1 );
+                updateScore( players[0] );
             }
+            
             createjs.Sound.play("ballGoal");
             ball.resetPosition();
+
         }
 
         //pads collisions
-        if ( this.actor.x+BALL_SIZE/2 > player1.pad.x - player1.pad.getBounds().width/2 )  {
+        for (var i = 0; i < players.length; i++) {
+            var padCollision = ndgmr.checkRectCollision(players[i].pad,ball.actor);
+            if( padCollision ) {
+                console.debug(padCollision);
+                ball.ballSpeedX *=-1;
 
-            if( this.actor.y > player1.pad.y && this.actor.y < player1.pad.y+player1.pad.getBounds().height/2 ) {
-                BALL_SPEED_Y = -BALL_SPEED_Y;
-                if (BALL_SPEED_Y < 0 ) {
-                    BALL_SPEED_Y *= -1;
-                };
-                BALL_SPEED_X *= -1;
-                this.actor.x = this.actor.x+BALL_SIZE/2-player1.pad.getBounds().width/2 - 1
-                createjs.Sound.play("ballImpact");
-            }
-            if( this.actor.y < player1.pad.y && this.actor.y > player1.pad.y-player1.pad.getBounds().height/2 ) {
-                BALL_SPEED_Y = BALL_SPEED_Y;
-                if (BALL_SPEED_Y > 0 ) {
-                    BALL_SPEED_Y *= -1;
-                };
-                BALL_SPEED_X *= -1;
-                this.actor.x = this.actor.x+BALL_SIZE/2-player1.pad.getBounds().width/2 - 1
-                createjs.Sound.play("ballImpact");
+                if ( ball.actor.y < players[i].pad.y && ball.actor.y > players[i].pad.y - players[i].pad.getBounds().height/2  ) {
+                    if (ball.ballSpeedY > 0 ) {
+                        ball.ballSpeedY *=-1
+                    };
+                } else {
+                    if (ball.ballSpeedY < 0 ) {
+                        ball.ballSpeedY *=-1
+                    };
+                }
+
+
             }
         };
 
-        if ( this.actor.x-BALL_SIZE/2 < player2.pad.x + player2.pad.getBounds().width/2 )  {
-
-            if( this.actor.y > player2.pad.y && this.actor.y < player2.pad.y+player2.pad.getBounds().height/2 ) {
-                BALL_SPEED_Y = -BALL_SPEED_Y;
-                if (BALL_SPEED_Y < 0 ) {
-                    BALL_SPEED_Y *= -1;
-                };
-                BALL_SPEED_X *= -1;
-                this.actor.x = this.actor.x+BALL_SIZE/2+player2.pad.getBounds().width/2 + 1
-                createjs.Sound.play("ballImpact");
-            }
-            if( this.actor.y < player2.pad.y && this.actor.y > player2.pad.y-player2.pad.getBounds().height/2 ) {
-                BALL_SPEED_Y = BALL_SPEED_Y;
-                if (BALL_SPEED_Y > 0 ) {
-                    BALL_SPEED_Y *= -1;
-                };
-                BALL_SPEED_X *= -1;
-                this.actor.x = this.actor.x+BALL_SIZE/2+player2.pad.getBounds().width/2 + 1
-                createjs.Sound.play("ballImpact");
-            }
-        };
         /* COLISIONS - end */
-
 
     }
 }

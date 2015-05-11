@@ -10,10 +10,10 @@ function updateScore( player ) {
         $endGame.find(".name").html(player.name);
         $(".endGameButton").on("click", function() {
             $endGame.fadeOut();
-            resetScore();
+            //resetScore();
             ball.resetPosition();
-            player1.resetPosition();
-            player2.resetPosition();
+            players[0].resetPosition();
+            players[1].resetPosition();
         });
         $("#menu").on("click", function() {
             $("#intro").fadeIn();
@@ -21,18 +21,18 @@ function updateScore( player ) {
     }
 }
 function resetScore() {
-    document.getElementById(player1.id).innerHTML = player1.name +": "+ 0; 
-    document.getElementById(player2.id).innerHTML = player2.name +": "+ 0; 
+    document.getElementById(players[0].id).innerHTML = players[0].name +": "+ 0; 
+    document.getElementById(players[1].id).innerHTML = players[1].name +": "+ 0; 
 }
 
 $(document).ready(function() {
     $(".startButton").on("click", function(e) {
         e.preventDefault();
-        resetScore();
+        //resetScore();
         ball.resetPosition();
-        player1.name = $("#player1Name").val()||"Player 1";
-        player2.name = $("#player2Name").val()||"Player 2";
-        resetScore();
+        players[0].name = $("#player1Name").val()||"Player 1";
+        players[1].name = $("#player2Name").val()||"Player 2";
+        //resetScore();
         $("#intro").fadeOut();
     });
     $("#bot").on("click", function(e) {
