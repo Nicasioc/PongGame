@@ -35,5 +35,16 @@ var Player = function(name, domId, image, side) {
 		this.pad.y = stage.canvas.height/2;
 	}
 
+	this.move = function() {
+		//TODO: Si existe phantom ball tiene que seguir a esa y no a la ball comun
+		if ( ball.actor.x < stage.getBounds().width/4 ) {
+			if ( this.pad.y > ball.actor.y ) {
+					this.update("up");
+				} else {
+					this.update();
+			}
+		} 
+	} 
+
     this.resetPostion();
 }

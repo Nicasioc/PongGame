@@ -1,0 +1,4 @@
+todo
+//@TODO: Saber si la pelota toco al bot
+//@TODO: Si toca al both crear otra instancia de Ball con el doble de velocidad que desaparece al llegar a la mitad de la cancha.
+//@TODO: Si existe phantom ball el bot tiene que seguir a esa y no a la ball comun

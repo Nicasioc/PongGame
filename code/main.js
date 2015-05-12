@@ -16,8 +16,8 @@ function init() {
 
     players.push( new Player( player1Name||"Player 1" ,PLAYER1_ID, PLAYER1_IMAGE) );
     players.push( new Player( player2Name||"Player 2" ,PLAYER2_ID, PLAYER2_IMAGE, "right") );
-    ball = new Ball(3, 10);
-    phantomBall = new Ball(10);
+    ball = new Ball(6, 10);
+    phantomBall = new Ball(12,1);
 
     //sound
     createjs.Sound.registerSound("snd/pipe.mp3", "ballImpact", 3);
@@ -84,8 +84,7 @@ function loop(event) {
             players[1].move();
         }
 
-        ball.update();
-        phantomBall.update();
+        ball.updatePosition();
         stage.update();
 
 
@@ -121,6 +120,9 @@ function loop(event) {
         for (var i = 0; i < players.length; i++) {
             var padCollision = ndgmr.checkRectCollision(players[i].pad,ball.actor);
             if( padCollision ) {
+
+                //@TODO setear si toco al bot BOOLEAN
+                
                 console.debug(padCollision);
                 ball.ballSpeedX *=-1;
 
@@ -137,6 +139,11 @@ function loop(event) {
 
             }
         };
+
+
+        /* Phantom ball */
+        //phantomBall.updatePosition();
+        //@TODO: Si toca al both crear otra instancia de Ball con el doble de velocidad que desaparece al llegar a la mitad de la cancha.
 
         /* COLISIONS - end */
 

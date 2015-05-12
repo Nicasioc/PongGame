@@ -18,5 +18,5 @@ var KEYCODE_P2_UP = 65,
     PLAYER1_ID = "player1";
     PLAYER2_IMAGE = "img/pad2.png",
     PLAYER2_ID = "player2";
-    CANVAS_WIDTH = 600;
-    CANVAS_HEIGHT = 400;
+    CANVAS_WIDTH = 800;
+    CANVAS_HEIGHT = 600;
