@@ -10,44 +10,41 @@
         <link href='styles.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
-        <body>
 
-            <div id="gameContainer">
-                <div id="intro">
-                    <h1>PONG!</h1>
-                    <div id="instrucciones">
-                        <h2>Controles</h2>
-                        <div class="control1">Rojo a/z <input id="player1Name" type="text" placeholder="Player 1 name"></div>
-                        <div class="control2">Azul flechas <input id="player2Name" type="text" placeholder="Player 2 name"></div>
-                        <strong>P para comenzar</strong>
-                    </div>
-                    <a id="start" class="startButton" href="#">START P1 Vs P2</a>
-                    <a id="bot" class="startButton" href="#">START P1 Vs Bot</a>
+        <div id="gameContainer">
+            <div id="intro">
+                <h1>PONG!</h1>
+                <div id="instrucciones">
+                    <h2>Controles</h2>
+                    <div class="control1">Rojo a/z <input id="player1Name" type="text" placeholder="Player 1 name"></div>
+                    <div class="control2">Azul flechas <input id="player2Name" type="text" placeholder="Player 2 name"></div>
+                    <strong>P para comenzar</strong>
                 </div>
-                <div id="pongWrapper">
-                  <div id="marker">
-                    <div id="player1" class="score1 number">Player1: 0</div>
-                    <div id="player2" class="score2 number">Player2: 0</div>
-                  </div>
-                  <canvas id="pong" width="500" height="300"></canvas>
-                </div>
-                <div id="endGame">
-                    <h1>Gano <span class="name"></span> </h1>
-                    <a id="replay" class="endGameButton" href="#">Replay</a>
-                    <br>
-                    <br>
-                    <a id="menu" class="endGameButton" href="#">Menu</a>
-                </div>
+                <a id="start" class="startButton" href="#">START P1 Vs P2</a>
+                <a id="bot" class="startButton" href="#">START P1 Vs Bot</a>
             </div>
-        </body>
-
+            <div id="pongWrapper">
+              <div id="marker">
+                <div id="player1" class="score1 number">Player1: 0</div>
+                <div id="player2" class="score2 number">Player2: 0</div>
+              </div>
+              <canvas id="pong" width="500" height="300"></canvas>
+            </div>
+            <div id="endGame">
+                <h1>Gano <span class="name"></span> </h1>
+                <a id="replay" class="endGameButton" href="#">Replay</a>
+                <br>
+                <br>
+                <a id="menu" class="endGameButton" href="#">Menu</a>
+            </div>
+        </div>
     </body>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script src="https://code.createjs.com/createjs-2014.12.12.min.js"></script>
         <script src="code/ndgmr.Collision.js"></script>
         <script src="code/config.js"></script>
-        <script src="code/ui.js"></script>
         <script src="code/Ball.js"></script>
         <script src="code/Player.js"></script>
+        <script src="code/ui.js"></script>
         <script src="code/main.js"></script>
 </html>

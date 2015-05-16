@@ -1,6 +1,6 @@
 function updateScore( player ) {
     player.score+=1;
-    document.getElementById(player.id).innerHTML = player.name +": "+ player.score; 
+    document.getElementById(player.id).innerHTML = player.name +": "+ player.score;
     $endGame = $("#endGame");
 
     if ( player.score > SCORE_TO_WIN ) {
@@ -21,8 +21,8 @@ function updateScore( player ) {
     }
 }
 function resetScore() {
-    document.getElementById(players[0].id).innerHTML = players[0].name +": "+ 0; 
-    document.getElementById(players[1].id).innerHTML = players[1].name +": "+ 0; 
+    document.getElementById(players[0].id).innerHTML = players[0].name +": "+ 0;
+    document.getElementById(players[1].id).innerHTML = players[1].name +": "+ 0;
 }
 
 $(document).ready(function() {
